@@ -1,0 +1,101 @@
+\subsection{Using CMake}
+
+\begin{frame}[t]{What is CMake?}
+\begin{itemize}
+  \item A set of tools that allows to build, test and packages software.
+  
+    \begin{itemize}
+      \item Starting from a CMake project you can generate scripts for
+            building in each platform.
+    \end{itemize}
+
+  \item Generators:
+    \begin{itemize}
+      \item Makefiles (Unix, Borland, MinGW, NMake).
+      \item Ninja.
+      \item Visual Studio.
+      \item Xcode.
+      \item Several IDE:  CodeBlocks, CodeLite, EclipseCDT, KDevelop.
+      \item IDE con soporte nativo: CLion, Visual.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{CMake root}
+\begin{block}{CMakeLists.txt}\tiny
+\inputminted{cmake}{examples/vector1/CMakeLists.txt}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{CMake for src}
+\begin{block}{src/CMakeLists.txt}\tiny
+\inputminted{cmake}{examples/vector1/src/CMakeLists.txt}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{CMake for samples}
+\begin{block}{samples/CMakeLists.txt}\tiny
+\inputminted{cmake}{examples/vector1/samples/CMakeLists.txt}
+\end{block}
+\end{frame}
+
+\begin{frame}[t,fragile]{Building with CMake}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+jdgarcia@gavilan:~/vector1$ mkdir build
+jdgarcia@gavilan:~/vector1$ cd build/
+jdgarcia@gavilan:~/vector1/build$ cmake ..
+-- The C compiler identification is GNU 6.2.0
+-- The CXX compiler identification is GNU 6.2.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jdgarcia/vector1/build
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{What if I want to select the compiler?}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+jdgarcia@gavilan:~//vector1/build$ cmake .. -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang
+-- Configuring done
+You have changed variables that require your cache to be deleted.
+Configure will be re-run and you may have to reset some variables.
+The following variables have changed:
+CMAKE_C_COMPILER= clang
+CMAKE_CXX_COMPILER= clang++
+
+-- The C compiler identification is Clang 3.8.0
+-- The CXX compiler identification is Clang 3.8.0
+-- Check for working C compiler: /usr/bin/clang
+-- Check for working C compiler: /usr/bin/clang -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++
+-- Check for working CXX compiler: /usr/bin/clang++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/jdgarcia//vector1/build
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Compilation procedure}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+jdgarcia@gavilan:~/vector1/build$ make
+Scanning dependencies of target dcl
+[ 50%] Building CXX object src/CMakeFiles/dcl.dir/vectint.cpp.o
+Linking CXX static library libdcl.a
+[ 50%] Built target dcl
+Scanning dependencies of target test1
+[100%] Building CXX object samples/CMakeFiles/test1.dir/main1.cpp.o
+Linking CXX executable ../test1
+[100%] Built target test1
+\end{lstlisting}
+\end{frame}

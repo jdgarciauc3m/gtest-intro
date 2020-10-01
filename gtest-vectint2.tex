@@ -1,0 +1,144 @@
+\subsection{Completing tests}
+
+\begin{frame}[t]{Testing size and capacity}
+\begin{columns}[T]
+
+\column{.6\textwidth}
+\begin{block}{utest/vectint\_sizing.cpp}
+\lstinputlisting[lastline=15]{examples/vector4/utest/vectint_sizing.cpp}
+\end{block}
+
+\column{.4\textwidth}
+\begin{block}{utest/vectint\_sizing.cpp}
+\lstinputlisting[firstline=17,lastline=25]{examples/vector4/utest/vectint_sizing.cpp}
+\end{block}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}[t]{Testing capacity}
+\begin{block}{utest/vectint\_sizing.cpp}
+\lstinputlisting[firstline=27,lastline=41]{examples/vector4/utest/vectint_sizing.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Testing size}
+\begin{block}{utest/vectint\_sizing.cpp}
+\lstinputlisting[firstline=43,lastline=59]{examples/vector4/utest/vectint_sizing.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Testing size}
+\begin{block}{utest/vectint\_sizing.cpp}
+\lstinputlisting[firstline=61]{examples/vector4/utest/vectint_sizing.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Testing size}
+\begin{block}{utest/vectint\_sizing.cpp}
+\lstinputlisting[firstline=43,lastline=59]{examples/vector4/utest/vectint_sizing.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t,fragile]{Running tests}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+jdgarcia@gavilan:~/vector4/build\$ ctest
+Test project /home/jdgarcia/bitbucket-repos/charlas-es/codemotion-16-gtest/examples/vector4/build
+    Start 1: vectint_sizing.reserve_grow
+1/9 Test #1: vectint_sizing.reserve_grow .................   Passed    0.00 sec
+    Start 2: vectint_sizing.reserve_shrink
+2/9 Test #2: vectint_sizing.reserve_shrink ...............   Passed    0.00 sec
+    Start 3: vectint_sizing.resize_grow_over_capacity
+3/9 Test #3: vectint_sizing.resize_grow_over_capacity ....***Exception: SegFault  0.10 sec
+    Start 4: vectint_sizing.resize_grow_under_capacity
+4/9 Test #4: vectint_sizing.resize_grow_under_capacity ...***Exception: SegFault  0.10 sec
+    Start 5: vectint_sizing.resize_shrink
+5/9 Test #5: vectint_sizing.resize_shrink ................   Passed    0.00 sec
+    Start 6: vectint_copy.copy_construct
+6/9 Test #6: vectint_copy.copy_construct .................   Passed    0.00 sec
+    Start 7: vectint_copy.copy_assign
+7/9 Test #7: vectint_copy.copy_assign ....................   Passed    0.00 sec
+    Start 8: vectint_constructor.empty
+8/9 Test #8: vectint_constructor.empty ...................   Passed    0.00 sec
+    Start 9: vectint_constructor.sized
+9/9 Test #9: vectint_constructor.sized ...................   Passed    0.00 sec
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Running tests}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+78% tests passed, 2 tests failed out of 9
+
+Total Test time (real) =   0.21 sec
+
+The following tests FAILED:
+	  3 - vectint_sizing.resize_grow_over_capacity (SEGFAULT)
+	  4 - vectint_sizing.resize_grow_under_capacity (SEGFAULT)
+Errors while running CTest
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Running a specific case}
+\begin{itemize}
+  \item A specific case can be selected.
+    \begin{itemize}
+      \item Option \cppkey{- -gtest\_filter="vectint\_sizing.*"}
+    \end{itemize}
+\end{itemize}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+jdgarcia@gavilan:~/vector4/build$ ./vectint_utest --gtest_filter="vectint_sizing.*"Running main() from gtest_main.cc
+Note: Google Test filter = vectint_sizing.*
+[==========] Running 5 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 5 tests from vectint_sizing
+[ RUN      ] vectint_sizing.reserve_grow
+[       OK ] vectint_sizing.reserve_grow (0 ms)
+[ RUN      ] vectint_sizing.reserve_shrink
+[       OK ] vectint_sizing.reserve_shrink (0 ms)
+[ RUN      ] vectint_sizing.resize_grow_over_capacity
+Violación de segmento (`core' generado)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Running a specific test}
+\begin{itemize}
+  \item A specific test can be selected.
+    \begin{itemize}
+      \item Option \cppkey{- -gtest\_filter="vectint\_sizing.resize\_grow\_over\_capacity"}
+    \end{itemize}
+\end{itemize}
+\begin{lstlisting}[style=terminal,basicstyle=\tiny\ttfamily]
+jdgarcia@gavilan:~/vector4/build$ ./vectint_utest --gtest_filter="vectint_sizing.resize_grow_over_capacity"
+Running main() from gtest_main.cc
+Note: Google Test filter = vectint_sizing.resize_grow_over_capacity
+[==========] Running 1 test from 1 test case.
+[----------] Global test environment set-up.
+[----------] 1 test from vectint_sizing
+[ RUN      ] vectint_sizing.resize_grow_over_capacity
+Violación de segmento (`core' generado)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t]{Error in resize()}
+\begin{block}{resize()}
+\lstinputlisting[firstline=29,lastline=35]{examples/vector4/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Fixing resize()}
+\begin{block}{resize()}
+\lstinputlisting[firstline=29,lastline=35]{examples/vector5/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Error in reserve()}
+\begin{block}{reserve()}
+\lstinputlisting[firstline=37,lastline=44]{examples/vector4/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Fixing reserve()}
+\begin{block}{reserve()}
+\lstinputlisting[firstline=37,lastline=44]{examples/vector5/src/vectint.cpp}
+\end{block}
+\end{frame}

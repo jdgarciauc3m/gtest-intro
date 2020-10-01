@@ -1,0 +1,91 @@
+\subsection{Introduction}
+
+\begin{frame}[t]{Examples}
+\begin{itemize}
+  \item You can get all the examples at:
+\end{itemize}
+\vspace{1cm}
+\large
+\textbf{\url{https://github.com/jdgarciauc3m/gtesttalk}}
+\end{frame}
+
+\begin{frame}[t]{What is Google Test?}
+\begin{itemize}
+  \item A library to perform unit testing in C++.
+  
+  \vfill
+  \item \textenum{Features}:
+    \begin{itemize}
+      \item A \textmark{xUnit}-like framework.
+      \item Test discovery.
+      \item Variety on assertions.
+      \item User defined assertions.
+      \item \emph{Death tests}.
+      \item Fatal and non-fatal failures.
+      \item Value parametrized tests.
+      \item Type parametrized tests.
+      \item Multiple execution options.
+      \item XML reporting.
+    \end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Use}
+\begin{itemize}
+  \item \textenum{Platforms}:
+    \begin{itemize}
+      \item Linux
+      \item Mac OS X
+      \item Windows
+      \item Cygwin
+      \item MinGW
+      \item Windows Mobile
+      \item Symbian
+    \end{itemize}
+  \vfill
+  \item Some projects \textenum{using} it:
+    \begin{itemize}
+      \item \textmark{Chromium} Project.
+      \item \textmark{LLVM} compiler family.
+      \item \textmark{Protocol Buffers}.
+      \item \textmark{OpenCV}.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Principles}
+\begin{enumerate}
+  \item Tests should be \textmark{independent} and \textmark{repeatible}.
+  \item Tests should be \textmark{well structured}.
+  \item Tests should be \textmark{portable} y \textmark{reusable}.
+  \item On failure, tests should give \textmark{maximum information}.
+  \item Tests should not require writing \textmark{boilerplate code} for
+        carrying out tests.
+  \item Testing should be \textmark{fast}.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[t,fragile]{How do I get Google Test?}
+\begin{itemize}
+  \item Repo in GitHub.
+    \begin{itemize}
+      \item \url{https://github.com/google/googletest}
+    \end{itemize}
+  \vfill
+  \item You can get as a pakcage (Ubuntu/Linux).
+    \begin{itemize}
+      \item Package: \cppid{libgtest-dev}.
+      \item \textbad{Important}: Does not intall binaries, only source code.
+    \end{itemize}
+\end{itemize}
+\begin{lstlisting}[style=terminal]
+$ apt-get install libgtest-dev
+$ cd /usr/src/gtest
+$ sudo mkdir build
+$ cd build
+$ sudo cmake ..
+$ sudo make
+$ sudo cp *.a /usr/lib
+\end{lstlisting}
+\end{frame}

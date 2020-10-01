@@ -1,0 +1,77 @@
+\subsection{Example1: vectint}
+
+\begin{frame}[t]{A vector of integers}
+\begin{itemize}
+  \item Let's start with a simple class.
+  \item A vector of integers with minimal functionality:
+    \begin{itemize}
+      \item A vector of integers with a size (\cppid{size()}) 
+            and maximum capacity (\cppid{capacity()}).
+      \item Support for copy and move.
+      \item Access \cppkey{operator[]}.
+      \item Capacity modification (\cppid{reserve()}). 
+      \item Size modification (\cppid{resize()}). 
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Interface}
+\begin{block}{include/vectint.h}
+\lstinputlisting[lastline=15]{examples/vector1/include/vectint.h}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Interface}
+\begin{block}{include/vectint.h}
+\lstinputlisting[firstline=16,lastline=26]{examples/vector1/include/vectint.h}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Interface}
+\begin{block}{include/vectint.h}
+\lstinputlisting[firstline=27]{examples/vector1/include/vectint.h}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Implementation}
+\begin{block}{src/vectint.cpp}
+\lstinputlisting[lastline=12]{examples/vector1/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Implementation}
+\begin{block}{src/vectint.cpp}
+\lstinputlisting[firstline=13,lastline=27]{examples/vector1/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Implementation}
+\begin{block}{src/vectint.cpp}
+\lstinputlisting[firstline=29,lastline=43]{examples/vector1/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Implementation}
+\begin{block}{src/vectint.cpp}
+\lstinputlisting[firstline=44]{examples/vector1/src/vectint.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{Program using vectint}
+\begin{columns}[T]
+
+\column{.5\textwidth}
+\begin{block}{samples/main1.cpp}
+\lstinputlisting[lastline=13]{examples/vector1/samples/main1.cpp}
+\end{block}
+
+\column{.5\textwidth}
+\begin{block}{samples/main1.cpp}
+\lstinputlisting[firstline=14]{examples/vector1/samples/main1.cpp}
+\end{block}
+
+\end{columns}
+\end{frame}
+
+
+

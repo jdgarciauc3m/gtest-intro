@@ -1,0 +1,110 @@
+\subsection{My first tests}
+
+\begin{frame}[t]{Test cases and tests}
+\begin{itemize}
+  \item In Google Test we can define tests and group them in test cases.
+    \begin{itemize}
+      \item Use the macro \cppid{TEST}.
+      \item \emph{Test case}: Elemental test.
+      \item \emph{Test}: Each individual test forming the test case.
+    \end{itemize}
+
+  \vfill
+  \item Performing checks:
+    \begin{itemize}
+      \item \cppid{EXPECT\_EQ}: Non fatal check.
+      \item \cppid{ASSERT\_EQ}: Fatal check.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Testing construction}
+\begin{block}{utest/vectint\_constructor.cpp}
+\lstinputlisting{examples/vector2/utest/vectint_constructor.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t,fragile]{Running tests}
+\begin{lstlisting}[style=terminal]
+jdgarcia@gavilan:~/vector2/build$ ./vectint_utest 
+Running main() from gtest_main.cc
+[==========] Running 2 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 2 tests from vectint_constructor
+[ RUN      ] vectint_constructor.empty
+[       OK ] vectint_constructor.empty (0 ms)
+[ RUN      ] vectint_constructor.sized
+[       OK ] vectint_constructor.sized (0 ms)
+[----------] 2 tests from vectint_constructor (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test case ran. (0 ms total)
+[  PASSED  ] 2 tests.
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[t,fragile]{Testing copy}
+\begin{columns}[T]
+
+\column{.5\textwidth}
+\begin{block}{utest/vectint\_copy.cpp}
+\lstinputlisting[lastline=15]{examples/vector2/utest/vectint_copy.cpp}
+\end{block}
+
+\column{.5\textwidth}
+\begin{block}{utest/vectint\_copy.cpp}
+\lstinputlisting[firstline=17]{examples/vector2/utest/vectint_copy.cpp}
+\end{block}
+\end{columns}
+\end{frame}
+
+\begin{frame}[t]{Configuring test compilation}
+\begin{block}{utest/CMakeLists.txt}\tiny
+\inputminted{cmake}{examples/vector2/utest/CMakeLists.txt}
+\end{block}
+\end{frame}
+
+\begin{frame}[t,fragile]{Integrating tests in CMake}
+\begin{itemize}
+  \item It is enough to add an invocation to \cppid{enable\_testing()} 
+        before including the tests directory.
+\end{itemize}
+
+\vfill
+\begin{block}{CMakeLists.txt}\small
+\begin{minted}{cmake}
+#...
+enable_testing()
+add_subdirectory(utest)
+\end{minted}
+\end{block}
+
+\vfill
+\begin{itemize}
+  \item A new target is generated for running tests.
+    \begin{itemize}
+      \item \cppkey{make test}.
+      \item \cppkey{ctest}.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t,fragile]{Running the tests}
+\begin{lstlisting}[style=terminal]
+jdgarcia@gavilan:~/github-repos/examples/gtesttalk/vector2/build$ make test
+Running tests...
+Test project /home/jdgarcia/github-repos/examples/gtesttalk/vector2/build
+    Start 1: vectint_copy.copy_construct
+1/4 Test #1: vectint_copy.copy_construct ......   Passed    0.00 sec
+    Start 2: vectint_copy.copy_assign
+2/4 Test #2: vectint_copy.copy_assign .........   Passed    0.00 sec
+    Start 3: vectint_constructor.empty
+3/4 Test #3: vectint_constructor.empty ........   Passed    0.00 sec
+    Start 4: vectint_constructor.sized
+4/4 Test #4: vectint_constructor.sized ........   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =   0.01 sec
+\end{lstlisting}
+\end{frame}

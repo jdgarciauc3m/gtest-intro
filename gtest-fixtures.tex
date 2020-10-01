@@ -1,0 +1,44 @@
+\subsection{Test Fixtures}
+
+\begin{frame}[t]{What is a Fixture?}
+\begin{itemize}
+  \item A test case with the same object configuration for all tests.
+    \begin{itemize}
+      \item Allows to avoid writing repetitive code to set up tests.
+    \end{itemize}
+
+  \item How?
+    \begin{itemize}
+      \item Define a class with the name of the case derived from
+            \cppid{::testing::Test}.
+      \item Make data members for objects that must be visible from tests.
+      \item Define constructor and/or destructor.
+        \begin{itemize}
+          \item Alternatively \cppid{SetUp()} and/or \cppid{TearDown()}.
+        \end{itemize}
+      \item Use macro \cppid{TEST\_F} instead of \cppid{TEST}.
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]{My first Fixture}
+\begin{block}{vectint\_copy}
+\lstinputlisting[lastline=12]{examples/vector4/utest/vectint_copy.cpp}
+\end{block}
+\end{frame}
+
+\begin{frame}[t]{My first Fixture}
+\begin{columns}
+
+\column{.5\textwidth}
+\begin{block}{vectint\_copy}
+\lstinputlisting[firstline=14,lastline=23]{examples/vector4/utest/vectint_copy.cpp}
+\end{block}
+
+\column{.5\textwidth}
+\begin{block}{vectint\_copy}
+\lstinputlisting[firstline=14,lastline=23]{examples/vector4/utest/vectint_copy.cpp}
+\end{block}
+
+\end{columns}
+\end{frame}
